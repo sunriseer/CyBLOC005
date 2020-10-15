@@ -16,7 +16,7 @@ def read_pgm(filename):
 
     for i in range(len(content)):
         if content[i] == '255':
-            temp = (content[:i + 1], content[i+ 1:])
+            temp = (content[:i + 1], content[i + 1:])
             return temp
 
 
@@ -33,17 +33,16 @@ def write_pgm(filename, content):
     """
     fout = open(filename, 'w')
 
+    #Header
     for i in range(len(content[0])):
-        if (i == 1 and len(content[0]) == 4) or (i == 2 and len(content[0]) > 4):
-            fout.write(content[0][i])
-            fout.write(" ")
+        if i == 1:
+            fout.write(content[0][i] + " ")
         else:
-            fout.write(content[0][i])
-            fout.write("\n")
+            fout.write(content[0][i] + "\n")
 
+    #Tail
     for i in content[1]:
-        fout.write(i)
-        fout.write("\n")
+        fout.write(i + "\n")
 
     fout.close()
 

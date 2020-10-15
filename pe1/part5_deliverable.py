@@ -26,6 +26,7 @@ def read_pgm(filename):
             return (content[:i + 1], content[i+ 1:])
 
 
+
 def write_pgm(filename, content):
     """
     Writes a PGM file
