@@ -18,11 +18,12 @@ def read_pgm(filename):
     content = fin.read().split()
     fin.close()
 
-    #Splits file into header and body elements
+    # Splits file into header and body elements and returns as tuple
+    # Could also just return (content[:4], content[4:])
     for i in range(len(content)):
+        # Assumes possibility of comment line and max value of 255
         if content[i] == '255':
-            temp = (content[:i + 1], content[i+ 1:])
-            return temp
+            return (content[:i + 1], content[i+ 1:])
 
 
 def write_pgm(filename, content):
@@ -37,20 +38,14 @@ def write_pgm(filename, content):
             None
     """
     fout = open(filename, 'w')
+    temp = content[0]+content[1]
 
-    #Writes the header
-    for i in range(len(content[0])):
-        if (i == 1 and len(content[0]) == 4) or (i == 2 and len(content[0]) > 4):
-            fout.write(content[0][i])
-            fout.write(" ")
+    # Puts whitespace between resolution values instead of newline
+    for i in range(len(temp)):
+        if i == 1:
+            fout.write("{} ".format(temp[i]))
         else:
-            fout.write(content[0][i])
-            fout.write("\n")
-
-    #Writes the body
-    for i in content[1]:
-        fout.write(i)
-        fout.write("\n")
+            fout.write("{}\n".format(temp[i]))
 
     fout.close()
 
@@ -65,8 +60,9 @@ def steg_encode(msg, cover):
             None
     """
     count = 0
+    msg = "{}{}".format(msg, sentinel())
 
-    #Hides message
+    # Hides message
     for char in msg:
         msgBin = format(ord(char), '0>8b')
 
@@ -76,7 +72,8 @@ def steg_encode(msg, cover):
             cover[count] = str(int(''.join(cover[count]), 2))
             count += 1
 
-    #Adds sentinel character
+    # Adds sentinel character - OUTDATED
+    """
     sentBin = format(ord(sentinel()), '0>8b')
 
     for i in range(8):
@@ -84,7 +81,7 @@ def steg_encode(msg, cover):
         cover[count][-1] = sentBin[i]
         cover[count] = str(int(''.join(cover[count]), 2))
         count += 1
-
+    """
 
 def steg_decode(stego):
     """
@@ -98,15 +95,17 @@ def steg_decode(stego):
     msg = []
     count = 0
 
-    #Extracts message from data
+    # Extracts message from data
     for i in range(len(stego)):
         stego[i] = list(format(int(stego[i]), '0>8b'))
         temp.append(stego[i][-1])
         count += 1
 
+        # After 8 bits are extracted, turn it back into char
         if count == 8:
             char = chr(int(''.join(temp), 2))
 
+            # Check for sentinel or append to decoded msg
             if char == sentinel():
                 return ''.join(msg)
             else:
@@ -126,16 +125,14 @@ def encode_pgm(msg,coverfilename,outputfilename):
             None
     """
 
-    #Read the file in
+    # Read the file in
     temp = read_pgm(coverfilename)
-    header = temp[0]
-    cover = temp[1]
 
-    #Encode
-    steg_encode(msg, cover)
+    # Encode
+    steg_encode(msg, temp[1])
 
-    #Write to file
-    write_pgm(outputfilename, (header, cover))
+    # Write to file
+    write_pgm(outputfilename, temp)
 
 
 def decode_pgm(filename):
