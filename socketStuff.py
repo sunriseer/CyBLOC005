@@ -18,7 +18,7 @@ def tcp_echo():
     s.connect(('127.0.0.1', 12345))
     s.sendall(b'hello world today is great')
 
-    capture = s.recieve(4096)
+    capture = s.recv(4096)
     print(capture)
 
 
