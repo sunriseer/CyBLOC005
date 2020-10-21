@@ -7,7 +7,13 @@ def q1(floatstr):
         floats, return a list with each of the floats in the
         argument as elements in the list.
     """
-    pass
+
+    temp = floatstr.split(",")
+
+    for i in range(len(temp)):
+        temp[i] = float(temp[i])
+
+    return temp
 
 
 def q2(*args):
@@ -17,7 +23,15 @@ def q2(*args):
         Given the variable length argument list, return the average
         of all the arguments as a float
     """
-    pass
+
+    sum = 0
+    count = 0
+
+    for arg in args:
+        sum += arg
+        count += 1
+
+    return sum/count
 
 
 def q3(lst, n):
@@ -26,7 +40,8 @@ def q3(lst, n):
         Given a list (lst) and a number of items (n), return a new
         list containing the last n entries in lst.
     """
-    pass
+
+    return lst[len(lst) - n:]
 
 
 def q4(strng):
@@ -36,7 +51,13 @@ def q4(strng):
         Given an input string, return a list containing the ordinal numbers of
         each character in the string in the order found in the input string.
     """
-    pass
+
+    temp = []
+
+    for i in range(len(strng)):
+        temp.append(ord(strng[i]))
+
+    return temp
 
 
 def q5(strng):
@@ -46,7 +67,8 @@ def q5(strng):
         Given an input string, return a tuple with each element in the tuple
         containing a single word from the input string in order.
     """
-    pass
+
+    return tuple(strng.split(" "))
 
 
 def q6():
@@ -58,7 +80,7 @@ def q6():
             Date: 12/31/1999 Time: 11:59 p.m. Temperature: 44 F
             Date: 01/01/2000 Time: 12:01 a.m. Temperature: 5.2 C
     """
-    pass
+    return "Date: (\d+/\d+/\d+) Time: (\d+:\d+ [ap]\.m\.) Temperature: (\d+\.*\d* [FC])"
 
 
 def q7(filename):
@@ -67,7 +89,14 @@ def q7(filename):
         Given a filename, open the file and return the length of the first line
         in the file excluding the line terminator.
     """
-    pass
+
+    fin = open(filename, "r")
+
+    temp = len(fin.readline()) - 1
+
+    fin.close()
+
+    return temp
 
 
 def q8(filename, lst):
@@ -80,7 +109,14 @@ def q8(filename, lst):
         the list. If "stop" is not found in the list, write the entire list to
         the file on separate lines.
     """
-    pass
+
+    fout = open(filename, "w")
+
+    for i in range(len(lst)):
+        if lst[i].upper() == "STOP":
+            return
+        else:
+            fout.write("{}\n".format(lst[i]))
 
 
 def q9(miltime):
@@ -93,7 +129,16 @@ def q9(miltime):
             1600-2059 "Good Evening"
             2100-0259 "Good Night"
     """
-    pass
+
+    if 300 <= miltime <= 1159:
+        return "Good Morning"
+    elif 1200 <= miltime <= 1559:
+        return "Good Afternoon"
+    elif 1600 <= miltime <= 2059:
+        return "Good Evening"
+    else:
+        return "Good Night"
+
 
 
 def q10(numlist):
@@ -104,5 +149,9 @@ def q10(numlist):
         numbers in the list are NOT negative. If any numbers in the list are
         negative, return False.
     """
-    pass
+    for i in numlist:
+        if i < 0:
+            return False
+
+    return True
 
