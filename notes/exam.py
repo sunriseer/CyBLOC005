@@ -109,7 +109,7 @@ def q10():
     #   your last name as a string
     #   your last name reversed as a string
     # Ensure the second element retains the same case as the first
-
+    pass
 
 
 
