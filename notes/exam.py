@@ -19,7 +19,12 @@ def q2(addr):
     # 239.255.255.255.
     # ipaddress.IPv4Address has been disabled for this function.
 
-    return False if 223 >= int(addr.split('.')[0]) >= 240 else True
+    temp = int(addr.split('.')[0])
+
+    if temp < 224 or temp >= 240:
+        return False
+    else:
+        return True
 
 
 def q3():
@@ -212,7 +217,13 @@ def q15(filename, overwrite, bytestowrite):
     #       bit 0x10 in the return.
     #    C. If the bytestowrite parameter is greater than 1,000,000, set bit
     #       0x20 in the return.
-    pass
+
+    if filename == '':
+        return 0x1
+    elif overwrite:
+        return 0x10
+    else:
+        return 0x20
 
 if __name__ == '__main__':
     pass

@@ -4,7 +4,12 @@ return 4 * PI * (radius ** 2)
 
 #######################################
 
-return False if 223 >= int(addr.split('.')[0]) >= 240 else True
+temp = int(addr.split('.')[0])
+
+if temp < 224 or temp >= 240:
+    return False
+else:
+    return True
 
 #######################################
 
@@ -124,7 +129,12 @@ class car:
 
 #######################################
 
-
+if filename == '':
+    return 0x1
+elif overwrite:
+    return 0x10
+else:
+    return 0x20
 
 #######################################
 
