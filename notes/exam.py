@@ -101,8 +101,15 @@ def q9(strng):
     # { 'l':2, 'h':1, 'e':1, 'o':1 }
     # collections.Counter has been disabled for this function.
 
-    pass
+    dict = {}
 
+    for char in strng:
+        if char in dict:
+            dict[char] += 1
+        else:
+            dict[char] = 1
+
+    return dict
 
 def q10():
     # Return a tuple consisting of the following elements in the order listed:
@@ -157,15 +164,8 @@ def q13(address, port):
     s.connect((address, port))
     s.sendall(b'hello')
 
-    buf = s.recv(36)
-
-    while buf:
-        msg.extend(buf)
-        buf = s.recv(36)
-
-    s.sendall(msg)
-    s.close()
-
+    echodata = s.recv(4096)
+    return echodata
 
 
 #14. Create a class with specific functions
@@ -180,6 +180,29 @@ def q13(address, port):
 #      string 'Current speed: ' followed by the current speed.
 
 #No code is given for this question
+
+class car:
+    def __init__(self):
+        self.speed = 0
+
+    def setspeed(self, speed):
+        self.speed = speed
+
+    def getspeed(self):
+        return self.speed
+
+    def speedup(self):
+        self.speed += 1
+
+    def slowdown(self):
+        self.speed -= 1
+
+    def stop(self):
+        self.speed = 0
+
+    def __str__(self):
+        return "Current speed: {}".format(self.speed)
+
 
 
 def q15(filename, overwrite, bytestowrite):
