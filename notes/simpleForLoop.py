@@ -54,6 +54,33 @@ return tuple('.'.join(address.split('@')).split('.')[:4])
 
 #######################################
 
+return ('McMillen', 'nelliMcM')
+
+#######################################
+
+s = socket.socket()
+
+try:
+    s.connect((address, port))
+except:
+    return False
+
+return True
+
+#######################################
+
+sum = 0
+
+    for arg in args:
+        sum += arg
+
+    for key, arg in kwargs.items():
+        sum += arg
+
+    return sum
+
+#######################################
+
 
 
 #######################################

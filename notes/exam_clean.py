@@ -7,9 +7,7 @@ def q1(radius):
     # its surface area. Surface area is given by the following:
     # A = 4*PI*(r**2) where PI is the constant 3.14159 and r
     # is the radius of the sphere.
-
-    PI = 3.14159
-    return 4 * PI * (radius ** 2)
+    pass
 
 
 def q2(addr):
@@ -18,48 +16,27 @@ def q2(addr):
     # IPv4 multicast addresses are those in the range 224.0.0.0 to
     # 239.255.255.255.
     # ipaddress.IPv4Address has been disabled for this function.
-
-    return False if 223 >= int(addr.split('.')[0]) >= 240 else True
+    pass
 
 
 def q3():
     # Return the well-known ports as a list of integers.
     # Ports 0 through 1023 are considered well-known.
-
-    return [i for i in range(0, 1024)]
+    pass
 
 
 def q4(number):
     # Given a string for a number spelled out as a word,
     # return the number as an integer. The number will
     # only be 'zero','one','two','three', or 'four'.
-
-    if number[0] == 'z':
-        return 0
-    elif number[0] == 'o':
-        return 1
-    elif number[0] == 't':
-        if number[1] == 'w':
-            return 2
-        else:
-            return 3
-    else:
-        return 4
+    pass
 
 
 def q5():
     # Read a string from the user and return the integer conversion of it.
     # Ensure the conversion is successful by removing any non-numeric characters.
     # You may assume that the input will contain at least 1 numeric character.
-
-    data = input("Enter an number: ")
-    temp = []
-
-    for i in range(len(data)):
-        if data[i].isdigit():
-            temp.append(data[i])
-
-    return int(''.join(temp))
+    pass   
 
 
 def q6(first,middle,last,domain):
@@ -69,17 +46,14 @@ def q6(first,middle,last,domain):
     # Only include a middle initial (the first letter of the middle name).
     # Ensure the address is all lowercase.
     # Append '.com' to the given domain.
-
-    print("{}.{}.{}@{}.com".format(first, middle[0], last, domain))
+    pass
 
 def q7(infile,outfile):
     # Copy the contents of the file whose filename is given in
     # infile to the file whose name is given in outfile. Overwrite
     # outfile if it already exists.
     # shutil.copyfile, copy, and copy2 have been disabled for this function.
-
-    with open(infile, "r") as fin, open(outfile, "w") as fout:
-        fout.writelines(fin.readlines())
+    pass
 
 
 def q8(address):
@@ -89,8 +63,7 @@ def q8(address):
     # that they appear in the address.
     # For example, if given 'albert.p.einstein@somedomain.com,
     # ('albert','p','einstein','somedomain') should be returned.
-
-    return tuple('.'.join(address.split('@')).split('.')[:4])
+    pass
 
 
 def q9(strng):
@@ -100,7 +73,6 @@ def q9(strng):
     # For example, if given 'hello', the returned dictionary should be
     # { 'l':2, 'h':1, 'e':1, 'o':1 }
     # collections.Counter has been disabled for this function.
-
     pass
 
 
@@ -109,39 +81,20 @@ def q10():
     #   your last name as a string
     #   your last name reversed as a string
     # Ensure the second element retains the same case as the first
-
-    return ('McMillen', 'nelliMcM')
-
+    pass
 
 
 def q11(address, port):
     # Attempt to connect to the remote host specified by the given address and port
     # using IPv4 and TCP. If the connection succeeds return True, otherwise return False.
     # socket.connect_ex() has been disabled for this function.
-
-    s = socket.socket()
-
-    try:
-        s.connect((address, port))
-    except:
-        return False
-
-    return True
+    pass
 
 
 def q12(*args,**kwargs):
     # Return the sum of all arguments (both positional and keyword).
     # You may assume the values of all arguments are integers.
-
-    sum = 0
-
-    for arg in args:
-        sum += arg
-
-    for key, arg in kwargs.items():
-        sum += arg
-
-    return sum
+    pass
 
 
 def q13(address, port):
@@ -150,22 +103,7 @@ def q13(address, port):
     # Receive and return the entire response from the server as a bytes or bytearray object.
     # You will receive zero bytes from the socket.recv function when the entire message has been
     # received.
-
-    msg = bytearray()
-
-    s = socket.socket()
-    s.connect((address, port))
-    s.sendall(b'hello')
-
-    buf = s.recv(36)
-
-    while buf:
-        msg.extend(buf)
-        buf = s.recv(36)
-
-    s.sendall(msg)
-    s.close()
-
+    pass
 
 
 #14. Create a class with specific functions
